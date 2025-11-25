@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kopi | Language Router</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/x-icon" href="assets/kopi.ico">
+  <script>
+    (function () {
+      const params = new URLSearchParams(window.location.search);
+      const qsLang = params.get("lang");
+      const stored = localStorage.getItem("langChoice");
+      const browser = (navigator.languages && navigator.languages[0]) || navigator.language || "";
+      const browserLang = (browser || "").toLowerCase().startsWith("de") ? "de" : "en";
+      const lang = (qsLang === "de" || qsLang === "en") ? qsLang
+        : (stored === "de" || stored === "en") ? stored
+          : browserLang;
+
+      if (qsLang === "de" || qsLang === "en") {
+        localStorage.setItem("langChoice", qsLang);
+      }
+
+      const path = window.location.pathname;
+      const withoutFile = path.endsWith("/") ? path : path.replace(/[^/]*$/, "");
+      const withoutLang = withoutFile.replace(/\/(en|de)\/$/, "/");
+      const base = withoutLang.endsWith("/") ? withoutLang : withoutLang + "/";
+      const targetPath = base + lang + "/";
+
+      if (!path.startsWith(targetPath)) {
+        const targetURL = new URL(targetPath, window.location.origin);
+        window.location.replace(targetURL.toString());
+      }
+    })();
+  </script>
+</head>
+<body>
+  <p style="color:#fff;font-family:Arial, sans-serif; background:#05070a; min-height:100vh; display:flex; align-items:center; justify-content:center;">
+    Redirecting…
+  </p>
+</body>
+</html>
