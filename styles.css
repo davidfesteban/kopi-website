@@ -310,6 +310,7 @@ section {
   place-items: center;
   padding: 1.5rem;
   overflow: visible;
+  justify-self: center;
 }
 
 .hero__image {
@@ -988,6 +989,22 @@ section {
 
   .hero__content h1 {
     font-size: 2.2rem;
+  }
+
+  .hero__visual {
+    width: 100%;
+  }
+
+  .hero__image {
+    width: 100%;
+    max-width: 520px;
+    margin: 0 auto;
+  }
+
+  .hero__badges {
+    justify-content: center;
+    gap: 1.6rem;
+    width: 100%;
   }
 
   .footer__brand {
