@@ -886,10 +886,11 @@ section {
   padding: 1.8rem 6vw 2.4rem;
   max-width: 1280px;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1rem;
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  gap: 0.8rem;
+  text-align: center;
 }
 
 .footer__brand {
@@ -906,7 +907,8 @@ section {
 
 .footer__note {
   color: var(--muted);
-  max-width: 480px;
+  max-width: 720px;
+  margin: 0;
 }
 
 .footer__links {
@@ -986,5 +988,10 @@ section {
 
   .hero__content h1 {
     font-size: 2.2rem;
+  }
+
+  .footer__brand {
+    justify-content: center;
+    width: 100%;
   }
 }
