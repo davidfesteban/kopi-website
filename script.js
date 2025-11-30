@@ -68,9 +68,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const updateBadgeBar = () => {
       const story = document.getElementById("product");
+      const footer = document.getElementById("contact");
       const triggerTop = story?.getBoundingClientRect().top ?? Infinity;
+      const footerTop = footer?.getBoundingClientRect().top ?? Infinity;
       const triggerPoint = window.innerHeight * 1.1;
-      const shouldFix = triggerTop <= triggerPoint;
+      const nearFooter = footerTop <= window.innerHeight + 40;
+      const shouldFix = triggerTop <= triggerPoint && !nearFooter;
       badgeBar.classList.toggle("is-fixed", shouldFix);
       badgeBar.style.pointerEvents = shouldFix ? "auto" : "none";
       setPlaceholder();
