@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const topBar = document.querySelector(".top-bar");
   const progress = document.querySelector(".progress-bar");
+  const heroBadges = document.querySelector(".hero__badges");
   const revealTargets = document.querySelectorAll(
     "section:not(.hero), .feature-card, .lineup__card, .gallery__item, .screen-card"
   );
@@ -51,6 +52,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (progress) {
       progress.style.transform = `scaleX(${ratio})`;
+    }
+
+    if (heroBadges) {
+      const stick = Math.max(0, Math.min(1, window.scrollY / 320));
+      heroBadges.style.setProperty("--badge-stick", stick.toFixed(3));
+      if (stick > 0.08) {
+        heroBadges.classList.add("is-floating");
+        heroBadges.style.pointerEvents = "auto";
+      } else {
+        heroBadges.classList.remove("is-floating");
+        heroBadges.style.pointerEvents = "auto";
+      }
     }
   };
 
