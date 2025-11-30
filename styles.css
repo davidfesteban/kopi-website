@@ -411,22 +411,33 @@ section {
   padding: 0.8rem 1.3rem;
   border-radius: 14px;
   border: 1px solid rgba(255, 255, 255, 0.14);
-  background: rgba(5, 7, 10, 0.22);
-  color: var(--text);
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
   font-weight: 700;
   letter-spacing: 0.01em;
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
   text-decoration: none;
   backdrop-filter: blur(10px);
-  mix-blend-mode: screen;
-  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  mix-blend-mode: difference;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, color 0.25s ease;
   z-index: 14;
+  overflow: hidden;
 }
 
 .bottom-preorder:hover {
   transform: translateX(-50%) translateY(-2px);
   box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4);
-  background: rgba(5, 7, 10, 0.3);
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.bottom-preorder::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.14);
+  mix-blend-mode: difference;
+  filter: invert(1);
+  pointer-events: none;
 }
 
 @keyframes floaty {
