@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const topBar = document.querySelector(".top-bar");
   const progress = document.querySelector(".progress-bar");
+  const preorderBtn = document.querySelector(".bottom-preorder");
   const revealTargets = document.querySelectorAll(
     "section:not(.hero), .feature-card, .lineup__card, .gallery__item, .screen-card"
   );
@@ -53,6 +54,12 @@ document.addEventListener("DOMContentLoaded", () => {
       progress.style.transform = `scaleX(${ratio})`;
     }
 
+    if (preorderBtn) {
+      const footer = document.getElementById("contact");
+      const footerTop = footer?.getBoundingClientRect().top ?? Infinity;
+      const nearFooter = footerTop <= window.innerHeight + 30;
+      preorderBtn.classList.toggle("is-hidden", nearFooter);
+    }
   };
 
   window.addEventListener("scroll", handleScroll, { passive: true });

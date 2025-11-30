@@ -410,16 +410,16 @@ section {
   transform: translateX(-50%);
   padding: 0.8rem 1.3rem;
   border-radius: 14px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  background: transparent;
   color: #fff;
   font-weight: 700;
   letter-spacing: 0.01em;
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
   text-decoration: none;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px) brightness(1.1);
   mix-blend-mode: difference;
-  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, color 0.25s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, color 0.25s ease, opacity 0.2s ease;
   z-index: 14;
   overflow: hidden;
 }
@@ -427,17 +427,23 @@ section {
 .bottom-preorder:hover {
   transform: translateX(-50%) translateY(-2px);
   box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4);
-  background: rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .bottom-preorder::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.25);
   mix-blend-mode: difference;
   filter: invert(1);
   pointer-events: none;
+}
+
+.bottom-preorder.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-50%) translateY(8px);
 }
 
 @keyframes floaty {
@@ -766,6 +772,22 @@ section {
   box-shadow: var(--shadow);
   overflow: hidden;
   overflow-x: auto;
+}
+
+.compare__hint {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-bottom: 0.6rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.compare__hint::before {
+  content: "↔";
+  display: inline-block;
+  font-weight: 700;
+  color: #d9e8ff;
 }
 
 .compare__row {
