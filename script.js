@@ -1,7 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
   const topBar = document.querySelector(".top-bar");
   const progress = document.querySelector(".progress-bar");
-  const heroBadges = document.querySelector(".hero__badges");
+  const badgeBar = document.querySelector(".badge-bar");
+  const badgeWrap = document.querySelector(".badge-bar-wrap");
   const revealTargets = document.querySelectorAll(
     "section:not(.hero), .feature-card, .lineup__card, .gallery__item, .screen-card"
   );
@@ -54,21 +55,28 @@ document.addEventListener("DOMContentLoaded", () => {
       progress.style.transform = `scaleX(${ratio})`;
     }
 
-    if (heroBadges) {
-      const stick = Math.max(0, Math.min(1, window.scrollY / 320));
-      heroBadges.style.setProperty("--badge-stick", stick.toFixed(3));
-      if (stick > 0.08) {
-        heroBadges.classList.add("is-floating");
-        heroBadges.style.pointerEvents = "auto";
-      } else {
-        heroBadges.classList.remove("is-floating");
-        heroBadges.style.pointerEvents = "auto";
-      }
-    }
   };
 
   window.addEventListener("scroll", handleScroll, { passive: true });
   handleScroll();
+
+  if (badgeBar && badgeWrap) {
+    const setPlaceholder = () => {
+      badgeWrap.style.height = `${badgeBar.offsetHeight}px`;
+    };
+
+    const updateBadgeBar = () => {
+      const rect = badgeWrap.getBoundingClientRect();
+      const shouldFix = rect.top <= 12;
+      badgeBar.classList.toggle("is-fixed", shouldFix);
+      badgeBar.classList.toggle("is-hidden", !shouldFix);
+      setPlaceholder();
+    };
+
+    window.addEventListener("scroll", updateBadgeBar, { passive: true });
+    window.addEventListener("resize", setPlaceholder);
+    updateBadgeBar();
+  }
 
   const interactive = document.querySelector(".glass-card");
   if (interactive) {

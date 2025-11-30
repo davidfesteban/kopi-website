@@ -352,19 +352,12 @@ section {
 }
 
 .hero__badges {
-  --badge-stick: 0;
   display: inline-flex;
-  gap:3.4rem;
-  margin-top: 1rem;
+  gap: 1rem;
+  margin-top: 0.6rem;
   position: relative;
   z-index: 2;
   animation: floaty 9s ease-in-out infinite;
-  transition:
-    transform 0.4s ease,
-    gap 0.3s ease,
-    padding 0.3s ease,
-    border-radius 0.3s ease,
-    box-shadow 0.3s ease;
 }
 
 .hero__badge {
@@ -410,28 +403,44 @@ section {
   white-space: nowrap;
 }
 
-.hero__badges.is-floating {
-  position: fixed;
-  right: 1rem;
-  left: auto;
-  top: auto;
-  gap: 0.8rem;
-  width: min(520px, calc(100% - 2rem));
-  bottom: calc(0.9rem + (1 - var(--badge-stick)) * 42vh);
-  opacity: calc(var(--badge-stick));
-  transform: translateY(calc((1 - var(--badge-stick)) * -8px)) scale(calc(0.95 + 0.05 * var(--badge-stick)));
-  animation: none;
-  justify-content: space-between;
+.badge-bar-wrap {
+  position: relative;
+  width: 100%;
 }
 
-.hero__badges.is-floating .hero__badge {
-  padding: 0.4rem 0.7rem;
-  border-radius: 999px;
+.badge-bar {
+  display: flex;
+  justify-content: center;
+  gap: 0.8rem;
+  margin: 0.8rem auto 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.28s ease, transform 0.32s ease;
+}
+
+.badge-bar.is-fixed {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%) translateY(-4px);
+  bottom: 1rem;
+  width: min(520px, calc(100% - 2rem));
+  z-index: 12;
+  animation: none;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.badge-bar.is-fixed .hero__badge {
   flex: 1;
+  justify-content: center;
   text-align: center;
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.2);
   background: rgba(5, 7, 10, 0.26);
   border-color: rgba(255, 255, 255, 0.05);
+}
+
+.badge-bar.is-fixed .hero__badge strong {
+  font-size: 0.95rem;
 }
 
 @keyframes floaty {
@@ -1170,20 +1179,21 @@ section {
     margin: 0 auto;
   }
 
-  .hero__badges {
+  .badge-bar {
     justify-content: center;
-    gap: 1.6rem;
-    width: 100%;
+    gap: 0.6rem;
+    margin: 0.8rem auto;
+    opacity: 0;
+    pointer-events: none;
   }
 
-  .hero__badges.is-floating {
-    left: 0.8rem;
-    right: 0.8rem;
-    bottom: calc(0.85rem + (1 - var(--badge-stick)) * 34vh);
-    width: calc(100% - 1.6rem);
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 0.6rem;
+  .badge-bar.is-fixed {
+    left: 50%;
+    right: auto;
+    width: min(520px, calc(100% - 1.6rem));
+    bottom: 0.9rem;
+    opacity: 1;
+    pointer-events: auto;
   }
 
   .footer__brand {
