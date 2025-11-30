@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const progress = document.querySelector(".progress-bar");
   const badgeBar = document.querySelector(".badge-bar");
   const badgeWrap = document.querySelector(".badge-bar-wrap");
+  const badgeTrigger = document.getElementById("badge-trigger") || badgeWrap;
   const revealTargets = document.querySelectorAll(
     "section:not(.hero), .feature-card, .lineup__card, .gallery__item, .screen-card"
   );
@@ -66,15 +67,18 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     const updateBadgeBar = () => {
-      const rect = badgeWrap.getBoundingClientRect();
-      const shouldFix = rect.top <= 12;
+      const story = document.getElementById("product");
+      const triggerTop = story?.getBoundingClientRect().top ?? Infinity;
+      const triggerPoint = window.innerHeight * 1.1;
+      const shouldFix = triggerTop <= triggerPoint;
       badgeBar.classList.toggle("is-fixed", shouldFix);
-      badgeBar.classList.toggle("is-hidden", !shouldFix);
+      badgeBar.style.pointerEvents = shouldFix ? "auto" : "none";
       setPlaceholder();
     };
 
-    window.addEventListener("scroll", updateBadgeBar, { passive: true });
+    setPlaceholder();
     window.addEventListener("resize", setPlaceholder);
+    window.addEventListener("scroll", updateBadgeBar, { passive: true });
     updateBadgeBar();
   }
 
