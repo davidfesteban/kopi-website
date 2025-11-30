@@ -1,9 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   const topBar = document.querySelector(".top-bar");
   const progress = document.querySelector(".progress-bar");
-  const badgeBar = document.querySelector(".badge-bar");
-  const badgeWrap = document.querySelector(".badge-bar-wrap");
-  const badgeTrigger = document.getElementById("badge-trigger") || badgeWrap;
   const revealTargets = document.querySelectorAll(
     "section:not(.hero), .feature-card, .lineup__card, .gallery__item, .screen-card"
   );
@@ -60,30 +57,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   window.addEventListener("scroll", handleScroll, { passive: true });
   handleScroll();
-
-  if (badgeBar && badgeWrap) {
-    const setPlaceholder = () => {
-      badgeWrap.style.height = `${badgeBar.offsetHeight}px`;
-    };
-
-    const updateBadgeBar = () => {
-      const story = document.getElementById("product");
-      const footer = document.getElementById("contact");
-      const triggerTop = story?.getBoundingClientRect().top ?? Infinity;
-      const footerTop = footer?.getBoundingClientRect().top ?? Infinity;
-      const triggerPoint = window.innerHeight * 1.1;
-      const nearFooter = footerTop <= window.innerHeight + 40;
-      const shouldFix = triggerTop <= triggerPoint && !nearFooter;
-      badgeBar.classList.toggle("is-fixed", shouldFix);
-      badgeBar.style.pointerEvents = shouldFix ? "auto" : "none";
-      setPlaceholder();
-    };
-
-    setPlaceholder();
-    window.addEventListener("resize", setPlaceholder);
-    window.addEventListener("scroll", updateBadgeBar, { passive: true });
-    updateBadgeBar();
-  }
 
   const interactive = document.querySelector(".glass-card");
   if (interactive) {

@@ -403,44 +403,30 @@ section {
   white-space: nowrap;
 }
 
-.badge-bar-wrap {
-  position: relative;
-  width: 100%;
-}
-
-.badge-bar {
-  display: flex;
-  justify-content: center;
-  gap: 0.8rem;
-  margin: 0.8rem auto 0;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.badge-bar.is-fixed {
+.bottom-preorder {
   position: fixed;
   left: 50%;
-  transform: translateX(-50%) translateY(-4px);
-  bottom: 1rem;
-  width: min(520px, calc(100% - 2rem));
-  z-index: 12;
-  animation: none;
-  opacity: 1;
-  pointer-events: auto;
+  bottom: 1.1rem;
+  transform: translateX(-50%);
+  padding: 0.8rem 1.3rem;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(5, 7, 10, 0.22);
+  color: var(--text);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+  text-decoration: none;
+  backdrop-filter: blur(10px);
+  mix-blend-mode: screen;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  z-index: 14;
 }
 
-.badge-bar.is-fixed .hero__badge {
-  flex: 1;
-  justify-content: center;
-  text-align: center;
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.2);
-  background: rgba(5, 7, 10, 0.26);
-  border-color: rgba(255, 255, 255, 0.05);
-}
-
-.badge-bar.is-fixed .hero__badge strong {
-  font-size: 0.95rem;
+.bottom-preorder:hover {
+  transform: translateX(-50%) translateY(-2px);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4);
+  background: rgba(5, 7, 10, 0.3);
 }
 
 @keyframes floaty {
@@ -1179,22 +1165,12 @@ section {
     margin: 0 auto;
   }
 
-  .badge-bar {
-    justify-content: center;
-    gap: 0.6rem;
-    margin: 0.8rem auto;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .badge-bar.is-fixed {
+  .bottom-preorder {
+    width: calc(100% - 1.8rem);
     left: 50%;
     right: auto;
-    width: min(520px, calc(100% - 1.6rem));
     bottom: 0.9rem;
-    opacity: 1;
-    pointer-events: auto;
+    text-align: center;
   }
 
   .footer__brand {
