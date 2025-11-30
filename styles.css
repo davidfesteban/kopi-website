@@ -694,6 +694,15 @@ section {
   padding-bottom: 3rem;
 }
 
+.ads-l--inline {
+  padding: 0;
+  margin-bottom: 1.8rem;
+}
+
+.ads-l--inline .ads-l__banner {
+  padding: 1.4rem 1.2rem;
+}
+
 .ads-l__banner {
   display: grid;
   gap: 0.6rem;
@@ -704,10 +713,27 @@ section {
   box-shadow: var(--shadow);
 }
 
+.ads-l__banner a {
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.ads-l__banner a:hover {
+  color: #c3e7ff;
+  text-decoration-color: currentColor;
+}
+
 .ads-l__headline h3 {
   margin: 0;
   font-size: clamp(1.6rem, 3.4vw, 2.2rem);
   line-height: 1.1;
+}
+
+.ads-l__note {
+  margin-top: 0.2rem;
+  color: var(--muted);
 }
 
 .ads-l__grid {
