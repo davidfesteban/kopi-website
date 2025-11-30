@@ -775,6 +775,10 @@ section {
   gap: 1rem;
 }
 
+.mini-grid + .mini-grid {
+  margin-top: 1rem;
+}
+
 .mini-card {
   padding: 1.05rem 1rem;
   border-radius: var(--radius);
